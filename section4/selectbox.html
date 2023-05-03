@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      const container = document.getElementById('app');
+      const root = ReactDOM.createRoot(container);
+
+      const ControlledForm = () => {
+        const useState = React.useState;
+        const [form, setForm] = useState({
+          age: '',
+        });
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setForm({
+            ...form,
+            [name]: value, // []でくくる
+          });
+        };
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          console.log(form);
+        };
+
+        const ages = [
+          { id: 0, generation: '選択してください' },
+          { id: 1, generation: '10代' },
+          { id: 2, generation: '20代' },
+          { id: 3, generation: '30代' },
+          { id: 4, generation: '40代' },
+          { id: 5, generation: '50代' },
+          { id: 6, generation: '60代~' },
+        ];
+
+        return (
+          <>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="age">年代</label>
+              <select
+                id="age"
+                name="age"
+                value={form.age}
+                onChange={handleChange}
+              >
+                {ages.map((age) => (
+                  <option key={age.id} value={age.id}>
+                    {age.generation}
+                  </option>
+                ))}
+              </select>
+              <button type="submit" onSubmit={handleSubmit}>
+                送信
+              </button>
+            </form>
+          </>
+        );
+      };
+      root.render(
+        <>
+          <ControlledForm />
+        </>
+      );
+    </script>
+  </body>
+</html>

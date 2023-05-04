@@ -1,6 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import TestComponent from './components/TestComponent';
+import GetItemComponent from './components/GetItemComponent';
+import StyledComponet from './components/StyledComponet';
+import StyledUseStateProps from './components/StyledUseStateProps';
+import EmotionComponent from './components/EmotionComponent';
 
 function App() {
   return (
@@ -17,6 +21,10 @@ function App() {
           Learn React
         </a>
         <TestComponent />
+        <StyledComponet />
+        <GetItemComponent />
+        <StyledUseStateProps />
+        <EmotionComponent />
       </header>
     </div>
   );
